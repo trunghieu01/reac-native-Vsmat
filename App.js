@@ -4,10 +4,15 @@ import React from 'react';
 import Screen1 from './Screen/Screen1';
 import Screen2 from './Screen/Screen2';
 
-const stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <Screen1/>
+    < NavigationContainer >
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={Screen1} />
+        <Stack.Screen name="Option" component={Screen2} />
+      </Stack.Navigator>
+    </NavigationContainer >
   );
 }

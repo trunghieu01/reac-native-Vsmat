@@ -1,11 +1,21 @@
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
-import React from 'react';
-import Screen2 from './Screen2';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
 
-export default function Screen1() {
+export default function Screen1({ navigation}) {
+  var blue = require('../assets/xanh.png');
+  var silve = require('../image/bac.png');
+  var red = require('../image/do.png');
+  var black = require('../image/den.png');
+  var image = { blue, silve, red, black };
+  var [link, setLink] = useState(image.blue);
+  
+  // const route = useRoute();
+  // if(route.params.message != blue && route.params.message != black && route.params.message != red && route.params.message != silve)
+  // console.log("empty");
   return (
-    <View style={{ flex: 1 }}>
-      <Image style={{ width: 270, height: 325, marginTop: 30, alignSelf: 'center' }} source={require('../assets/xanh.png')} />
+    <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+      <Image style={{ width: 270, height: 325, marginTop: 50, alignSelf: 'center' }} source={link} />
       <Text style={{ textAlign: 'center', marginTop: 26, fontSize: 18 }}>Điện thoại Vsmart Joy 3 - Hàng chính hãng</Text>
       <View style={{ alignSelf: 'flex-start', flexDirection: 'row' }}>
         <Image style={{ marginTop: 13, marginLeft: 23 }} source={require('../image/Star.png')} />
@@ -24,7 +34,7 @@ export default function Screen1() {
         <Image style={{ marginTop: 27, width: 22, height: 22 }} source={require('../image/Group.png')} />
       </View>
 
-      <TouchableOpacity onPress={changeScreen} activeOpacity={0.5} style={{ flexDirection: "row", borderRadius: 10, borderWidth: 0.8, width: 332, height: 40, alignSelf: 'center', marginTop: 19 }}>
+      <TouchableOpacity onPress={() => navigation.navigate('Option')} activeOpacity={0.5} style={{ flexDirection: "row", borderRadius: 10, borderWidth: 0.8, width: 332, height: 40, alignSelf: 'center', marginTop: 19 }}>
         <Text style={{ marginLeft: 100, alignSelf: 'center', fontSize: 16, lineHeight: 21, fontWeight: 'bold', color: 'black' }}>4 MÀU - CHỌN MÀU</Text>
         <Image style={{ alignSelf: 'center', marginLeft: 60 }} source={require('../image/Vector.png')} />
       </TouchableOpacity>
@@ -35,8 +45,4 @@ export default function Screen1() {
     </View>
   );
 }
-function changeScreen() {
-  return (
-    <Screen2/>
-  );
-}
+
