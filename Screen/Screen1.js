@@ -1,18 +1,17 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import { useRoute } from '@react-navigation/native';
+import React, {  useEffect,useState } from 'react';
+import {useRoute } from '@react-navigation/native';
 
-export default function Screen1({ navigation}) {
-  var blue = require('../assets/xanh.png');
-  var silve = require('../image/bac.png');
-  var red = require('../image/do.png');
-  var black = require('../image/den.png');
-  var image = { blue, silve, red, black };
-  var [link, setLink] = useState(image.blue);
-  
-  // const route = useRoute();
-  // if(route.params.message != blue && route.params.message != black && route.params.message != red && route.params.message != silve)
-  // console.log("empty");
+export default function Screen1({ navigation }) {
+  const route = useRoute();
+
+  var blue = require('../assets/xanh.png')
+  var [link, setLink] = useState(blue)
+
+  useEffect(() => {
+    if (route.params != null)
+      setLink(route.params.message)
+  });
   return (
     <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
       <Image style={{ width: 270, height: 325, marginTop: 50, alignSelf: 'center' }} source={link} />
